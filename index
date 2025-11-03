@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Franktown SDA Church — Wellness & Community Center Proposal</title>
+  <meta name="description" content="Comprehensive proposal for a self-sustaining Wellness & Community Center in Franktown, CO." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --ink:#0f172a; --muted:#334155; --line:#e2e8f0; --card:#ffffff; --bg:#f8fafc;
+      --brand:#1f4e79; --brand-2:#2f75b5; --brand-3:#73a5d9; --accent:#0f3a5c;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;color:var(--ink);background:var(--bg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    a{color:var(--brand-2);text-decoration:none} a:hover{text-decoration:underline}
+    h1,h2,h3{line-height:1.25;margin:0 0 .4rem}
+    h1{font-size:1.6rem} h2{font-size:1.25rem} h3{font-size:1.05rem}
+    p,ul,ol{margin:.5rem 0}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
+    header{
+      position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);
+      background:rgba(255,255,255,.9);border-bottom:1px solid var(--line);
+    }
+    header .bar{display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:.9rem 0}
+    .btn{
+      border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;
+      padding:.55rem .9rem;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.08)
+    }
+    .btn:hover{background:#111827;border-color:#111827}
+    .grid{display:grid;grid-template-columns:1fr;gap:1rem;margin:1rem 0}
+    @media (min-width:1024px){ .grid{grid-template-columns:260px 1fr} }
+    nav{position:sticky;top:64px;align-self:start}
+    nav a{display:block;padding:.6rem .75rem;border:1px solid var(--line);background:#fff;border-radius:.75rem;margin:.4rem 0}
+    nav a:hover{box-shadow:0 4px 14px rgba(15,23,42,.06)}
+    section{scroll-margin-top:80px}
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1rem;
+      box-shadow:0 6px 24px rgba(15,23,42,.05)
+    }
+    .two-col{column-width:420px;column-gap:2rem}
+    .table{width:100%;border-collapse:collapse;font-size:.95rem}
+    .table th,.table td{border-top:1px solid var(--line);padding:.6rem .5rem;vertical-align:top}
+    .table thead th{background:#f1f5f9;font-weight:600;border-top:none}
+    .muted{color:var(--muted)}
+    .kpi{display:flex;gap:1rem;flex-wrap:wrap;margin:.5rem 0}
+    .kpi div{flex:1 1 180px;background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.8rem}
+    footer{margin:3rem 0 2rem;color:var(--muted);font-size:.9rem}
+    .caption{font-size:.9rem;color:var(--muted);margin:.4rem 0 .6rem}
+    @media print {
+      header, nav .print-hide, .print-hide{display:none !important}
+      body{background:#fff}
+      .grid{display:block}
+      .card{box-shadow:none;border:none;padding:0}
+      a{text-decoration:none;color:#000}
+      .two-col{column-width:360px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <h1>Franktown SDA Church · Wellness & Community Center Proposal</h1>
+      <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </header>
+
+  <main class="wrap grid">
+    <!-- NAV -->
+    <nav aria-label="Sections">
+      <a href="#exec">Executive Summary</a>
+      <a href="#gym">1) Gym</a>
+      <a href="#hydro">2) Hydrotherapy & Sauna</a>
+      <a href="#cooking">3) Cooking & Lifestyle</a>
+      <a href="#farm">4) Micro-Farm & Market</a>
+      <a href="#turf">5) Turf Sports Field</a>
+      <a href="#pros">6) Wellness Professionals</a>
+      <a href="#finance">Financial Self-Sustainability</a>
+      <a href="#healthcare">Doctor/Dentist Clinic</a>
+      <a href="#pathfinder">Pathfinder Camporee</a>
+      <a href="#timeline">Phased Timeline</a>
+      <a href="
