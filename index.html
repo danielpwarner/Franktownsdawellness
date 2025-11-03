@@ -1,83 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Franktown SDA Church — Wellness & Community Center Proposal</title>
-  <meta name="description" content="Comprehensive proposal for a self-sustaining Wellness & Community Center in Franktown, CO." />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <style>
-    :root{
-      --ink:#0f172a; --muted:#334155; --line:#e2e8f0; --card:#ffffff; --bg:#f8fafc;
-      --brand:#1f4e79; --brand-2:#2f75b5; --brand-3:#73a5d9; --accent:#0f3a5c;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;color:var(--ink);background:var(--bg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
-    a{color:var(--brand-2);text-decoration:none} a:hover{text-decoration:underline}
-    h1,h2,h3{line-height:1.25;margin:0 0 .4rem}
-    h1{font-size:1.6rem} h2{font-size:1.25rem} h3{font-size:1.05rem}
-    p,ul,ol{margin:.5rem 0}
-    .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
-    header{
-      position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);
-      background:rgba(255,255,255,.9);border-bottom:1px solid var(--line);
-    }
-    header .bar{display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:.9rem 0}
-    .btn{
-      border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;
-      padding:.55rem .9rem;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.08)
-    }
-    .btn:hover{background:#111827;border-color:#111827}
-    .grid{display:grid;grid-template-columns:1fr;gap:1rem;margin:1rem 0}
-    @media (min-width:1024px){ .grid{grid-template-columns:260px 1fr} }
-    nav{position:sticky;top:64px;align-self:start}
-    nav a{display:block;padding:.6rem .75rem;border:1px solid var(--line);background:#fff;border-radius:.75rem;margin:.4rem 0}
-    nav a:hover{box-shadow:0 4px 14px rgba(15,23,42,.06)}
-    section{scroll-margin-top:80px}
-    .card{
-      background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1rem;
-      box-shadow:0 6px 24px rgba(15,23,42,.05)
-    }
-    .two-col{column-width:420px;column-gap:2rem}
-    .table{width:100%;border-collapse:collapse;font-size:.95rem}
-    .table th,.table td{border-top:1px solid var(--line);padding:.6rem .5rem;vertical-align:top}
-    .table thead th{background:#f1f5f9;font-weight:600;border-top:none}
-    .muted{color:var(--muted)}
-    .kpi{display:flex;gap:1rem;flex-wrap:wrap;margin:.5rem 0}
-    .kpi div{flex:1 1 180px;background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.8rem}
-    footer{margin:3rem 0 2rem;color:var(--muted);font-size:.9rem}
-    .caption{font-size:.9rem;color:var(--muted);margin:.4rem 0 .6rem}
-    @media print {
-      header, nav .print-hide, .print-hide{display:none !important}
-      body{background:#fff}
-      .grid{display:block}
-      .card{box-shadow:none;border:none;padding:0}
-      a{text-decoration:none;color:#000}
-      .two-col{column-width:360px}
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Franktown SDA Church — Wellness & Community Center Proposal</title>
+<meta name="description" content="Comprehensive, self-sustaining Wellness & Community Center proposal for Franktown, CO." />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{ --ink:#0f172a; --muted:#334155; --line:#e2e8f0; --card:#ffffff; --bg:#f8fafc;
+         --brand:#1f4e79; --brand-2:#2f75b5; --brand-3:#73a5d9; --accent:#0f3a5c; }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+            font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;}
+  a{color:var(--brand-2);text-decoration:none} a:hover{text-decoration:underline}
+  h1,h2,h3{margin:0 0 .4rem;line-height:1.25} h1{font-size:1.6rem} h2{font-size:1.25rem} h3{font-size:1.05rem}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
+  header{position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);
+         background:rgba(255,255,255,.9);border-bottom:1px solid var(--line)}
+  header .bar{display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:.9rem 0}
+  .btn{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:.55rem .9rem;cursor:pointer}
+  .btn:hover{background:#111827;border-color:#111827}
+  .grid{display:grid;gap:1rem;margin:1rem 0;grid-template-columns:1fr}
+  @media (min-width:1024px){ .grid{grid-template-columns:260px 1fr} }
+  nav{position:sticky;top:64px;align-self:start}
+  .tablink{display:block;padding:.65rem .75rem;border:1px solid var(--line);background:#fff;border-radius:.75rem;margin:.4rem 0}
+  .tablink.active{border-color:#cbd5e1;background:#f1f5f9;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1rem;box-shadow:0 6px 24px rgba(15,23,42,.05)}
+  .hidden{display:none !important}
+  .two-col{column-width:420px;column-gap:2rem}
+  .table{width:100%;border-collapse:collapse;font-size:.95rem}
+  .table th,.table td{border-top:1px solid var(--line);padding:.6rem .5rem;vertical-align:top}
+  .table thead th{background:#f1f5f9;font-weight:600;border-top:none}
+  .muted{color:var(--muted)}
+  .kpi{display:flex;gap:1rem;flex-wrap:wrap;margin:.5rem 0}
+  .kpi div{flex:1 1 180px;background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.8rem}
+  .caption{font-size:.9rem;color:var(--muted);margin:.4rem 0 .6rem}
+  @media print{
+    header,nav{display:none !important}
+    body{background:#fff}
+    .grid{display:block}
+    .card{box-shadow:none;border:none;padding:0}
+    .two-col{column-width:360px}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="wrap bar">
-      <h1>Franktown SDA Church · Wellness & Community Center Proposal</h1>
-      <button class="btn" onclick="window.print()">Print / Save as PDF</button>
-    </div>
-  </header>
+<header>
+  <div class="wrap bar">
+    <h1>Franktown SDA Church · Wellness & Community Center Proposal</h1>
+    <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+</header>
 
-  <main class="wrap grid">
-    <!-- NAV -->
-    <nav aria-label="Sections">
-      <a href="#exec">Executive Summary</a>
-      <a href="#gym">1) Gym</a>
-      <a href="#hydro">2) Hydrotherapy & Sauna</a>
-      <a href="#cooking">3) Cooking & Lifestyle</a>
-      <a href="#farm">4) Micro-Farm & Market</a>
-      <a href="#turf">5) Turf Sports Field</a>
-      <a href="#pros">6) Wellness Professionals</a>
-      <a href="#finance">Financial Self-Sustainability</a>
-      <a href="#healthcare">Doctor/Dentist Clinic</a>
-      <a href="#pathfinder">Pathfinder Camporee</a>
-      <a href="#timeline">Phased Timeline</a>
-      <a href="
+<main class="wrap grid">
+  <!-- TAB NAV -->
+  <nav aria-label="Sections">
+    <!-- data-target must match the section id -->
+    <a class="tablink" data-target="exec" href="#exec">Executive Summary</a>
+    <a class="tablink" data-target="gym" href="#gym">1) Gym</a>
+    <a class="tablink" data-target="hydro" href="#hydro">2) Hydrotherapy & Sauna</a>
+    <a class="tablink" data-target="cooking" href="#cooking">3) Cooking & Lifestyle</a>
+    <a class="tablink" data-target="farm" href="#farm">4) Micro-Farm & Market</a>
+    <a class="tablink" data-target="turf" href="#turf">5) Turf Sports Field</a>
+    <a class="tablink" data-target="pros" href="#pros">6) Wellness Professionals</a>
+    <a class="tablink" data-target="finance" href="#finance">Financial Self-Sustainability</a>
+    <a class="tablink" data-target="healthcare" href="#healthcare">Doctor/Dentist Clinic</a>
+    <a class="tablink" data-target="pathfinder" href="#pathfinder">Pathfinder Camporee</a>
+    <a class="tablink" data-target="timeline" href="#timeline">Phased Timeline</a>
+    <a class="tablink" data-target="marketing" href="#marketing">Marketing & Outreach</a>
+    <a class="tablink" data-target="risk" href="#risk">Risk & Mitigation</a>
+    <a class="tablink" data-target="charts" href="#charts">Charts</a>
+    <a class="tablink" data-target="refs" href="#refs">Sources & Citations</a>
+  </nav>
+
+  <!-- TAB CONTENT -->
+  <div>
+    <!-- Each section is a “tab panel” -->
+    <section id="exec" class="card">
+      <h2>Executive Summary</h2>
+      <div class="two-col">
+        <p>Franktown SDA Church is preparing to build a wellness center focused on holistic health (body, mind, spirit). To maximise impact and financial sustainability, we propose the following six key components:</p>
+        <ul>
+          <li><b>Full-service gym</b> (strength + cardio + group fitness)</li>
+          <li><b>Hydrotherapy & sauna</b> zone</li>
+          <li><b>Cooking-class kitchen</b> + healthy lifestyle education</li>
+          <li><b>Micro-farm</b> + “mini-agriculture/animal husbandry” classroom + weekly farmers’ market</li>
+          <li><b>Turf sports field</b> (training, team sports, wellness programming)</li>
+          <li><b>On-site wellness professionals</b>: personal trainer + massage therapist</li>
+        </ul>
+        <p>Each component functions both as ministry (community wellness, outreach) and as a potential revenue stream (memberships, classes, market booths, rentals). Together these build a wellness campus where non-church members and the broader community can engage—helping offset building costs and offering natural outreach opportunities.</p>
+        <p>Below, each component is detailed with purpose, rough cost estimates, revenue potential, and mission alignment. This plan also adds a self-sustaining financial model (with free services for those in need), a rotating doctor/dentist clinic, and a Pathfinder camporee area.</p>
+      </div>
+    </section>
+
+    <section id="gym" class="card hidden">
+      <h2>1) Gym Component</h2>
+      <h3>Purpose & Mission Alignment</h3>
+      <ul>
+        <li>A full-service gym is a strong draw in the local community (Franktown/Elbert County).</li>
+        <li>Encourages health, wellness, discipline, community among members and non-members alike.</li>
+        <li>A “front door” for fitness visitors to encounter the church’s health ministry, faith messages, and classes.</li>
+        <li>Membership fees and personal training income help offset facility costs.</li>
+      </ul>
+      <h3>Facility / Equipment Estimate</h3>
+      <ul>
+        <li>Mid-sized gym (2,000–4,000 sq ft): <b>$30,000–50,000</b> equipment.<sup>1</sup></li>
+        <li>Larger setups (4,000+ sq ft): <b>$100,000+</b> for full gear.<sup>2</sup></li>
+        <li>Rule of thumb: ~<b>$25/sq ft</b> (e.g., 3,000 sq ft ≈ <b>$75,000</b>).<sup>3</sup></li>
+        <li>Utilities for mid-sized 24/7 facility: <b>$5,000–8,000/mo</b> regionally.<sup>4</sup></li>
+        <li>Franktown church context: plan <b>$40,000–60,000</b> equipment + build-out.</li>
+      </ul>
+      <h3>Revenue Potential / Membership Model</h3>
+      <ul>
+        <li>$40/mo individual, $60/mo family; add-ons for PT and small-group classes.</li>
+        <li>150 members × $40 = <b>$6,000/mo</b> ⇒ <b>$72,000/yr</b>.</li>
+        <li>1 FT trainer: 20 sessions/week × $60 × 52 = <b>$62,400/yr</b>.</li>
+        <li>Combined modest scenario ≈ <b>$100,000/yr</b> gross from memberships + PT.</li>
+      </ul>
+      <h3>Suggested Metrics & Trackers</h3>
+      <ul>
+        <li>Membership growth/churn, ARPM, utilisation/peak hours.</li>
+        <li>PT sessions; maintenance cost/month; outreach conversion.</li>
+      </ul>
+      <h3>Implementation Suggestions</h3>
+      <ul>
+        <li>Consider leasing (~$2,000–3,000/mo for ~3,000 sq ft).<sup>5</sup></li>
+        <li>Modular build; launch essentials first.</li>
+        <li>Member discounts; family/student/senior plans.</li>
+        <li>Use gym for wellness workshops (nutrition, classes).</li>
+      </ul>
+    </section>
+
+    <section id="hydro" class="card hidden">
+      <h2>2) Hydrotherapy / Sauna Zone</h2>
+      <h3>Purpose & Mission Alignment</h3>
+      <ul>
+        <li>Aligns with SDA health message; premium differentiator.</li>
+        <li>Package with memberships as recovery & wellness.</li>
+      </ul>
+      <h3>Setup & Cost Estimate</h3>
+      <ul>
+        <li>Commercial infrared or traditional sauna; ventilation/HVAC.</li>
+        <li>Hydrotherapy (warm pool, cold plunge, whirlpool): <b>$50,000–150,000+</b> depending on scale.</li>
+        <li>Lean start: steam/sauna + cold plunge; plan utilities/filtration/cleaning.</li>
+      </ul>
+      <h3>Revenue & Mission Tie-in</h3>
+      <ul>
+        <li>Premium tier (+$15–20/mo), recovery packages.</li>
+        <li>Small-group events, retreats, sports recovery, education nights.</li>
+      </ul>
+    </section>
+
+    <section id="cooking" class="card hidden">
+      <h2>3) Cooking Classes & Healthy Lifestyle Education</h2>
+      <h3>Purpose & Mission Alignment</h3>
+      <ul>
+        <li>Nutrition central to church identity; practical discipleship.</li>
+        <li>Connects gym ↔ farm ↔ market for holistic wellness.</li>
+      </ul>
+      <h3>Setup & Cost Estimate</h3>
+      <ul>
+        <li>Demo/commercial kitchen: <b>$30,000–80,000</b> depending on utilities.</li>
+        <li>Include maintenance, consumables, instructor staffing.</li>
+      </ul>
+      <h3>Revenue & Outreach</h3>
+      <ul>
+        <li>Paid classes ($25–40), workshops, kids’ camps, chef/nutritionist partnerships.</li>
+        <li>“Farm to table” via micro-farm; optional subscription recipe kits.</li>
+      </ul>
+    </section>
+
+    <section id="farm" class="card hidden">
+      <h2>4) Micro-Farm + Weekly Farmers’ Market</h2>
+      <h3>Purpose & Mission Alignment</h3>
+      <p>Creation care, education, and nutrition on site. Weekly market invites community and boosts outreach.</p>
+      <h3>Terraponic / Hydroponic Systems</h3>
+      <ul>
+        <li>Hybrid hydroponic + aquaponic for high yield in limited space.</li>
+        <li>Urban hydroponic setups: ~<b>$20–80/sq ft</b> for advanced systems.<sup>6</sup></li>
+        <li>Colorado climate favors greenhouse/indoor control for year-round production.<sup>7</sup></li>
+        <li>Hydro crops: leafy greens, herbs, microgreens, strawberries; outdoor: cold-hardy veg, roots, berries; small livestock per zoning.</li>
+      </ul>
+      <h3>Costs, Yields & Profit (Illustrative)</h3>
+      <ul>
+        <li>2,000 sq ft indoor + 0.5 acre outdoor: ≈ <b>$100,000</b> startup (60k indoor, 40k outdoor).</li>
+        <li>Operating: utilities, seeds/nutrients, part-time labor, maintenance.</li>
+        <li>Example yield: 2,000 sq ft × 10 lb/sq ft/yr = <b>20,000 lb</b> lettuce → at $3/lb ≈ <b>$60,000</b> gross (plus herbs/microgreens).<sup>8</sup></li>
+        <li>Outdoor produce/animal sales: +<b>$20,000–30,000</b> (scale-dependent).</li>
+        <li>Farmers’ market: 20 vendors × $30 × 52 ≈ <b>$31,000/yr</b> stall fees; church farm stall ≈ <b>$80,000/yr</b> @ $2,000/wk × 40 weeks (aspirational).</li>
+      </ul>
+      <table class="table">
+        <caption class="caption">Illustrative Micro-Farm Setup & Yields</caption>
+        <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Indoor hydro area</td><td>~2,000 sq ft (~$60k setup)</td></tr>
+          <tr><td>Outdoor farm & animals</td><td>~0.5 acre (~$40k setup)</td></tr>
+          <tr><td>Annual indoor yield</td><td>~20,000 lb leafy greens (~$60k gross @ $3/lb)</td></tr>
+          <tr><td>Market stall fees</td><td>~$31k/yr (20 vendors @ $30 × 52)</td></tr>
+          <tr><td>Church farm stall sales</td><td>Up to ~$80k/yr (aspirational)</td></tr>
+        </tbody>
+      </table>
+      <h3>Implementation Suggestions</h3>
+      <ul>
+        <li>Start small and scalable; add greenhouse capacity as demand grows.</li>
+        <li>Partner with USDA extension, 4-H, schools; integrate classes/field trips.</li>
+        <li>Use farm produce in cooking classes and at the market.</li>
+      </ul>
+    </section>
+
+    <section id="turf" class="card hidden">
+      <h2>5) Turf Sports Field</h2>
+      <h3>Purpose & Mission Alignment</h3>
+      <p>Outdoor wellness, youth & family activities, leagues, and rentals—broadening outreach.</p>
+      <h3>Setup & Cost Estimate</h3>
+      <ul>
+        <li>Small turf field (~100×50 ft): <b>$200,000–300,000+</b> (base, drainage, turf, lighting, fencing).</li>
+        <li>Budget alternative: natural turf with markings.</li>
+      </ul>
+      <h3>Revenue & Outreach</h3>
+      <ul>
+        <li>Rentals: 10 hrs/wk × $100 = <b>~$52,000/yr</b>; sports camps/clinics; church wellness events.</li>
+        <li>Premium gym tier with field access; free/low-cost community sports nights.</li>
+      </ul>
+    </section>
+
+    <section id="pros" class="card hidden">
+      <h2>6) On-site Wellness Professionals (PT & Massage)</h2>
+      <h3>Purpose & Mission Alignment</h3>
+      <p>Transforms a gym into holistic wellness, improves retention, and adds individualized care.</p>
+      <h3>Setup & Costs</h3>
+      <ul>
+        <li>Massage suite + trainer assessment area: <b>$20,000–40,000</b> build-out.</li>
+      </ul>
+      <h3>Revenue Potential</h3>
+      <ul>
+        <li>PT: 20 sessions/wk × $60 × 50 ≈ <b>$60,000/yr</b>; center retains ~40% → <b>~$24,000</b>.</li>
+        <li>Massage: 25/wk × $80 × 50 ≈ <b>$100,000/yr</b>; center retains ~30% → <b>~$30,000</b>.</li>
+      </ul>
+    </section>
+
+    <section id="finance" class="card hidden">
+      <h2>Financial Self-Sustainability & Benevolence</h2>
+      <div class="two-col">
+        <p>Multiple revenue streams fund operations and benevolence, replacing recurring donations. Surplus supports a <b>Community Health Fund</b> to provide free gym memberships, produce boxes, healthcare visits, and youth scholarships.</p>
+        <div class="kpi">
+          <div><b>Initial capital</b><br>$550,000 (phased possible)</div>
+          <div><b>Total annual revenue</b><br>$281,000 (conservative)</div>
+          <div><b>Total annual OPEX</b><br>$250,000</div>
+          <div><b>Net contribution</b><br><b>~$30,000/yr</b> (grows as programs scale)</div>
+        </div>
+        <table class="table">
+          <caption class="caption">Initial Capital Build-out</caption>
+          <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td>Gym equipment & build-out</td><td>$50,000</td></tr>
+            <tr><td>Hydrotherapy/sauna zone</td><td>$80,000</td></tr>
+            <tr><td>Cooking-class kitchen</td><td>$40,000</td></tr>
+            <tr><td>Micro-farm & indoor hydroponic</td><td>$100,000</td></tr>
+            <tr><td>Turf sports field</td><td>$250,000</td></tr>
+            <tr><td>Trainer/massage suite build-out</td><td>$30,000</td></tr>
+            <tr><th>Total initial</th><th>$550,000</th></tr>
+          </tbody>
+        </table>
+        <table class="table" style="margin-top:1rem">
+          <caption class="caption">Annual Revenue (Conservative)</caption>
+          <thead><tr><th>Stream</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td>Gym memberships</td><td>$72,000</td></tr>
+            <tr><td>Personal training (center share)</td><td>$24,000</td></tr>
+            <tr><td>Premium add-ons (sauna/hydro)</td><td>$15,000</td></tr>
+            <tr><td>Farm produce + vendor fees</td><td>$90,000</td></tr>
+            <tr><td>Turf field rentals/events</td><td>$50,000</td></tr>
+            <tr><td>Massage therapy (center share)</td><td>$30,000</td></tr>
+            <tr><th>Total annual revenue</th><th>$281,000</th></tr>
+          </tbody>
+        </table>
+        <table class="table" style="margin-top:1rem">
+          <caption class="caption">Annual Operating Costs (Rough)</caption>
+          <thead><tr><th>Category</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td>Staff (manager, trainer(s), ops, cleaning)</td><td>$120,000</td></tr>
+            <tr><td>Utilities/maintenance (gym + sauna + field)</td><td>$60,000</td></tr>
+            <tr><td>Farm & market operating (seeds, water, nutrients, labor)</td><td>$40,000</td></tr>
+            <tr><td>Insurance, marketing, admin</td><td>$30,000</td></tr>
+            <tr><th>Total OPEX</th><th>$250,000</th></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="healthcare" class="card hidden">
+      <h2>Community Healthcare Extension (Doctor/Dentist)</h2>
+      <ul>
+        <li>Two exam/treatment suites (150–200 sq ft each), sink, privacy, ADA access.</li>
+        <li>Build-out: <b>$40,000–60,000</b> for both rooms; equipment can be donated/used.</li>
+        <li>Services: preventive checkups, screenings, basic dental care, nutrition coaching, referrals.</li>
+        <li>Funding: Community Health Fund + modest co-pays; outreach to uninsured/low-income families.</li>
+      </ul>
+    </section>
+
+    <section id="pathfinder" class="card hidden">
+      <h2>Pathfinder Camporee & Youth Engagement (20 Acres)</h2>
+      <ul>
+        <li>Dedicated acres with tent sites, fire rings, water access, restrooms.</li>
+        <li>Integrate honors via farm, cooking, nature study, health/fitness, animal husbandry.</li>
+        <li>Area-wide camporees and Adventurer weekends; modest site-use fees for maintenance.</li>
+      </ul>
+    </section>
+
+    <section id="timeline" class="card hidden">
+      <h2>Phased Implementation & Timeline</h2>
+      <table class="table">
+        <thead><tr><th>Phase</th><th>Year</th><th>Focus</th><th>Key Deliverables</th></tr></thead>
+        <tbody>
+          <tr><td>Phase 1</td><td>Year 1</td><td>Core Launch</td><td>Gym + Sauna/Steam + Cooking Kitchen; open memberships; marketing</td></tr>
+          <tr><td>Phase 2</td><td>Years 2–3</td><td>Farm & Market + Wellness Pros</td><td>Indoor hydro/terraponic + outdoor farm; weekly market; hire trainer & massage therapist</td></tr>
+          <tr><td>Phase 3</td><td>Years 3–4</td><td>Field + Expansion</td><td>Install turf field (or partner for cost); ramp rentals/camps; scale farm/greenhouse</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="marketing" class="card hidden">
+      <h2>Marketing & Outreach Strategy</h2>
+      <ul>
+        <li>Brand as “Franktown Wellness & Community Center”.</li>
+        <li>Local advertising: social, flyers at market, school/league partnerships.</li>
+        <li>Free trial week / Open Day tours across gym, sauna, cooking demos, and farm.</li>
+        <li>Ambassador program; quarterly Health & Faith seminars.</li>
+        <li>Cross-promotions: market discounts; class trial passes; renter wellness offers.</li>
+        <li>Message holistic wellness (physical + spiritual + community).</li>
+      </ul>
+    </section>
+
+    <section id="risk" class="card hidden">
+      <h2>Risk Assessment & Mitigation</h2>
+      <table class="table">
+        <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+        <tbody>
+          <tr><td>Slower membership uptake</td><td>Aggressive launch; employer/school partnerships; corporate plans</td></tr>
+          <tr><td>Farm yield ramp-up lag</td><td>Start small; supply classes/church first; scale cautiously</td></tr>
+          <tr><td>Turf field cost overruns</td><td>Competitive bids; partnerships; start natural turf</td></tr>
+          <tr><td>Higher utilities/maintenance</td><td>Efficient systems; controlled hours; early metrics</td></tr>
+          <tr><td>Mission drift</td><td>Ministry KPIs; staff training; integrate faith in programs</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="charts" class="card hidden">
+      <h2>Charts</h2>
+      <div class="two-col">
+        <div>
+          <div class="caption">Projected Annual Revenue Breakdown</div>
+          <canvas id="pieChart" height="180"></canvas>
+        </div>
+        <div>
+          <div class="caption">5-Year Financial Projection</div>
+          <canvas id="barChart" height="200"></canvas>
+        </div>
+      </div>
+      <div style="margin-top:1rem">
+        <div class="caption">Implementation Timeline (Years 1–5)</div>
+        <canvas id="lineChart" height="140"></canvas>
+      </div>
+    </section>
+
+    <section id="refs" class="card hidden">
+      <h2>Sources & Citations</h2>
+      <ol>
+        <li>Exercise.com — <span class="muted">The Cost of Opening a Gym</span> — equipment/startup ranges. <br>
+          <a href="https://www.exercise.com/grow/the-cost-of-opening-a-gym/" target="_blank" rel="noopener">exercise.com/grow/the-cost-of-opening-a-gym/</a></li>
+        <li>Hevy Coach — <span class="muted">Cost to Open a Gym</span> — size-based scenarios. <br>
+          <a href="https://hevycoach.com/cost-to-open-a-gym/" target="_blank" rel="noopener">hevycoach.com/cost-to-open-a-gym/</a></li>
+        <li>Gymdesk — <span class="muted">How Much Does It Cost To Open a Gym?</span> — ~$25/sq ft heuristic. <br>
+          <a href="https://gymdesk.com/blog/how-much-does-it-cost-to-open-a-gym/" target="_blank" rel="noopener">gymdesk.com/blog/how-much-does-it-cost-to-open-a-gym/</a></li>
+        <li>RDX Sports Wholesale — utilities/ops notes. <br>
+          <a href="https://wholesale.rdxsports.com/blog/how-much-does-it-cost-to-start-a-new-gym/" target="_blank" rel="noopener">wholesale.rdxsports.com/blog/how-much...</a></li>
+        <li>Farmonaut — hydroponic cost model (~$20–80/sq ft). <br>
+          <a href="https://farmonaut.com/blogs/hydroponic-farming-model-urban-hydroponics-cost-working/" target="_blank" rel="noopener">farmonaut.com/blogs/hydroponic-farming...</a></li>
+        <li>Fork Farms — startup considerations for hydroponic farms. <br>
+          <a href="https://www.forkfarms.com/blog/how-much-does-it-cost-to-start-a-hydroponic-farm" target="_blank" rel="noopener">forkfarms.com/blog/how-much...</a></li>
+        <li>ZipGrow — indoor hydroponic costs & profits overview. <br>
+          <a href="https://zipgrow.com/indoor-hydroponic-farming-costs-profits/" target="_blank" rel="noopener">zipgrow.com/indoor-hydroponic-farming...</a></li>
+      </ol>
+      <p class="muted">All dollar figures are illustrative planning estimates. Obtain local bids and professional advice before committing budget.</p>
+    </section>
+  </div>
+</main>
+
+<script>
+  // --- Tab logic ---
+  const tabs = Array.from(document.querySelectorAll('.tablink'));
+  const panels = Array.from(document.querySelectorAll('section.card'));
+
+  function showPanel(id){
+    panels.forEach(p => p.classList.toggle('hidden', p.id !== id));
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+    // Lazy-init charts when their panel is first opened
+    if(id === 'charts') initChartsOnce();
+  }
+
+  // Handle clicks
+  tabs.forEach(t => t.addEventListener('click', (e) => {
+    e.preventDefault();
+    const id = t.dataset.target;
+    history.replaceState(null, '', '#' + id); // update URL hash
+    showPanel(id);
+  }));
+
+  // On load: open hash panel or default to exec
+  const initial = location.hash ? location.hash.replace('#','') : 'exec';
+  showPanel(initial);
+
+  // Also handle back/forward navigation
+  window.addEventListener('hashchange', () => {
+    const target = location.hash.replace('#','') || 'exec';
+    showPanel(target);
+  });
+
+  // --- Charts (init once) ---
+  let chartsInitialized = false;
+  function initChartsOnce(){
+    if(chartsInitialized) return;
+    chartsInitialized = true;
+
+    const palette = ["#1f4e79","#2f75b5","#73a5d9","#0f3a5c","#55c1c3","#2e8b8b","#a8d5e2"];
+
+    // Pie
+    new Chart(document.getElementById("pieChart"), {
+      type: "pie",
+      data: {
+        labels: ["Gym + Training","Sauna/Hydro","Massage","Farm & Market","Turf Field","Cooking Classes","Healthcare"],
+        datasets: [{ data: [96000,15000,100000,90000,50000,15000,20000], backgroundColor: palette }]
+      },
+      options: { plugins:{ legend:{ position:"right" }, tooltip:{ callbacks:{ label:ctx=> `${ctx.label}: $${(+ctx.raw).toLocaleString()}` } } } }
+    });
+
+    // Bar
+    const fiveYear = [
+      { y:"Year 1", rev:200000, exp:180000 },
+      { y:"Year 2", rev:300000, exp:240000 },
+      { y:"Year 3", rev:400000, exp:250000 },
+      { y:"Year 4", rev:420000, exp:260000 },
+      { y:"Year 5", rev:440000, exp:270000 },
+    ];
+    new Chart(document.getElementById("barChart"), {
+      type: "bar",
+      data: {
+        labels: fiveYear.map(d=>d.y),
+        datasets: [
+          { label:"Revenue", data: fiveYear.map(d=>d.rev), backgroundColor:"#2f75b5" },
+          { label:"Expenses", data: fiveYear.map(d=>d.exp), backgroundColor:"#73a5d9" }
+        ]
+      },
+      options: {
+        scales: { y: { ticks:{ callback:v=>"$"+(v/1000).toFixed(0)+"k" } } }
+      }
+    });
+
+    // Line
+    new Chart(document.getElementById("lineChart"), {
+      type: "line",
+      data: {
+        labels: ["Phase 1","Phase 2","Phase 3","Phase 4","Phase 5"],
+        datasets: [{ label:"Year", data:[1,2,3,4,5], borderColor:"#1f4e79", backgroundColor:"#1f4e79", tension:.3 }]
+      },
+      options: { scales: { y: { suggestedMin:1, suggestedMax:5, ticks:{ stepSize:1 } } } }
+    });
+  }
+</script>
+</body>
+</html>
