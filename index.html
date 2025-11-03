@@ -16,16 +16,30 @@
   a{color:var(--brand-2);text-decoration:none} a:hover{text-decoration:underline}
   h1,h2,h3{margin:0 0 .4rem;line-height:1.25} h1{font-size:1.6rem} h2{font-size:1.25rem} h3{font-size:1.05rem}
   .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
-  header{position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);
-         background:rgba(255,255,255,.9);border-bottom:1px solid var(--line)}
-  header .bar{display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:.9rem 0}
+
+  header{position:sticky;top:0;z-index:20;backdrop-filter:blur(6px);
+         background:rgba(255,255,255,.95);border-bottom:1px solid var(--line)}
+  header .bar{display:flex;gap:.75rem;align-items:center;justify-content:space-between;padding:.8rem 0;flex-wrap:wrap}
   .btn{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:.55rem .9rem;cursor:pointer}
   .btn:hover{background:#111827;border-color:#111827}
-  .grid{display:grid;gap:1rem;margin:1rem 0;grid-template-columns:1fr}
-  @media (min-width:1024px){ .grid{grid-template-columns:260px 1fr} }
-  nav{position:sticky;top:64px;align-self:start}
+  .btn-outline{border:1px solid var(--line);background:#fff;color:var(--ink)}
+  .btn-outline:hover{border-color:#cbd5e1}
+
+  /* Layout */
+  .layout{display:grid;gap:1rem;margin:1rem 0;grid-template-columns:1fr}
+  @media (min-width:1024px){ .layout{grid-template-columns:260px 1fr} }
+
+  /* Nav */
+  nav{align-self:start}
+  @media (min-width:1024px){ nav{position:sticky;top:72px} } /* sticky only on large screens */
   .tablink{display:block;padding:.65rem .75rem;border:1px solid var(--line);background:#fff;border-radius:.75rem;margin:.4rem 0}
   .tablink.active{border-color:#cbd5e1;background:#f1f5f9;font-weight:600}
+  .nav-mobile{display:none}
+  .nav-panel{display:none}
+  .nav-panel.open{display:block}
+  @media (min-width:1024px){ .nav-mobile{display:none} .nav-panel{display:block} }
+
+  /* Content & cards */
   .card{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1rem;box-shadow:0 6px 24px rgba(15,23,42,.05)}
   .hidden{display:none !important}
   .two-col{column-width:420px;column-gap:2rem}
@@ -36,10 +50,25 @@
   .kpi{display:flex;gap:1rem;flex-wrap:wrap;margin:.5rem 0}
   .kpi div{flex:1 1 180px;background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.8rem}
   .caption{font-size:.9rem;color:var(--muted);margin:.4rem 0 .6rem}
+
+  /* Accordion */
+  .accordion{border:1px solid var(--line);border-radius:.75rem;overflow:hidden;background:#fff}
+  .acc-item + .acc-item{border-top:1px solid var(--line)}
+  .acc-btn{width:100%;text-align:left;padding:.8rem 1rem;background:#f8fafc;border:none;cursor:pointer;font-weight:600}
+  .acc-panel{display:none;padding:1rem}
+  .acc-item.open .acc-panel{display:block}
+
+  /* Calendar */
+  .calendar{border:1px solid var(--line);border-radius:.75rem;background:#fff;overflow:auto}
+  .calendar table{width:100%;border-collapse:collapse;font-size:.9rem}
+  .calendar th,.calendar td{border-top:1px solid var(--line);border-right:1px solid var(--line);padding:.5rem;vertical-align:top}
+  .calendar th:last-child,.calendar td:last-child{border-right:none}
+  .badge{display:inline-block;padding:.1rem .4rem;border-radius:.4rem;background:#e2e8f0;margin:.1rem 0}
+
   @media print{
-    header,nav{display:none !important}
+    header, nav, .nav-mobile{display:none !important}
     body{background:#fff}
-    .grid{display:block}
+    .layout{display:block}
     .card{box-shadow:none;border:none;padding:0}
     .two-col{column-width:360px}
   }
@@ -49,13 +78,16 @@
 <header>
   <div class="wrap bar">
     <h1>Franktown SDA Church · Wellness & Community Center Proposal</h1>
-    <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="btn-outline nav-mobile" id="menuBtn" aria-expanded="false" aria-controls="sideNav">Menu</button>
+      <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
   </div>
 </header>
 
-<main class="wrap grid">
+<main class="wrap layout">
   <!-- TAB NAV -->
-  <nav aria-label="Sections">
+  <nav aria-label="Sections" id="sideNav" class="nav-panel">
     <!-- data-target must match the section id -->
     <a class="tablink" data-target="exec" href="#exec">Executive Summary</a>
     <a class="tablink" data-target="gym" href="#gym">1) Gym</a>
@@ -71,12 +103,13 @@
     <a class="tablink" data-target="marketing" href="#marketing">Marketing & Outreach</a>
     <a class="tablink" data-target="risk" href="#risk">Risk & Mitigation</a>
     <a class="tablink" data-target="charts" href="#charts">Charts</a>
+    <a class="tablink" data-target="agcal" href="#agcal">Ag Year-Round Calendar</a>
     <a class="tablink" data-target="refs" href="#refs">Sources & Citations</a>
   </nav>
 
   <!-- TAB CONTENT -->
   <div>
-    <!-- Each section is a “tab panel” -->
+    <!-- Executive Summary -->
     <section id="exec" class="card">
       <h2>Executive Summary</h2>
       <div class="two-col">
@@ -94,6 +127,7 @@
       </div>
     </section>
 
+    <!-- Gym -->
     <section id="gym" class="card hidden">
       <h2>1) Gym Component</h2>
       <h3>Purpose & Mission Alignment</h3>
@@ -132,6 +166,7 @@
       </ul>
     </section>
 
+    <!-- Hydro -->
     <section id="hydro" class="card hidden">
       <h2>2) Hydrotherapy / Sauna Zone</h2>
       <h3>Purpose & Mission Alignment</h3>
@@ -152,6 +187,7 @@
       </ul>
     </section>
 
+    <!-- Cooking -->
     <section id="cooking" class="card hidden">
       <h2>3) Cooking Classes & Healthy Lifestyle Education</h2>
       <h3>Purpose & Mission Alignment</h3>
@@ -171,10 +207,12 @@
       </ul>
     </section>
 
+    <!-- Farm -->
     <section id="farm" class="card hidden">
       <h2>4) Micro-Farm + Weekly Farmers’ Market</h2>
       <h3>Purpose & Mission Alignment</h3>
       <p>Creation care, education, and nutrition on site. Weekly market invites community and boosts outreach.</p>
+
       <h3>Terraponic / Hydroponic Systems</h3>
       <ul>
         <li>Hybrid hydroponic + aquaponic for high yield in limited space.</li>
@@ -182,6 +220,7 @@
         <li>Colorado climate favors greenhouse/indoor control for year-round production.<sup>7</sup></li>
         <li>Hydro crops: leafy greens, herbs, microgreens, strawberries; outdoor: cold-hardy veg, roots, berries; small livestock per zoning.</li>
       </ul>
+
       <h3>Costs, Yields & Profit (Illustrative)</h3>
       <ul>
         <li>2,000 sq ft indoor + 0.5 acre outdoor: ≈ <b>$100,000</b> startup (60k indoor, 40k outdoor).</li>
@@ -190,6 +229,7 @@
         <li>Outdoor produce/animal sales: +<b>$20,000–30,000</b> (scale-dependent).</li>
         <li>Farmers’ market: 20 vendors × $30 × 52 ≈ <b>$31,000/yr</b> stall fees; church farm stall ≈ <b>$80,000/yr</b> @ $2,000/wk × 40 weeks (aspirational).</li>
       </ul>
+
       <table class="table">
         <caption class="caption">Illustrative Micro-Farm Setup & Yields</caption>
         <thead><tr><th>Item</th><th>Amount</th></tr></thead>
@@ -201,14 +241,100 @@
           <tr><td>Church farm stall sales</td><td>Up to ~$80k/yr (aspirational)</td></tr>
         </tbody>
       </table>
-      <h3>Implementation Suggestions</h3>
+
+      <h3>Beekeeping Program (Apiary)</h3>
+      <p>Managed hives support pollination across gardens/orchards and produce honey, wax, and propolis for value-added sales. The program is ideal for hands-on classes, youth honors, and community workshops.</p>
+
+      <div class="kpi">
+        <div><b>Apiary scale (example)</b><br>8 hives</div>
+        <div><b>Honey yield</b><br>~30–60 lb/hive/yr</div>
+        <div><b>Honey revenue (est.)</b><br>8×45 lb×$10 ≈ <b>$3,600/yr</b></div>
+        <div><b>Pollination impact</b><br>Improves farm yields & quality</div>
+      </div>
+
+      <table class="table">
+        <caption class="caption">Illustrative Startup & Operating (per hive unless noted)</caption>
+        <thead><tr><th>Item</th><th>Estimate</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Langstroth hive (deep+medium+frames)</td><td>$200–300</td><td>Per hive; extra supers $40–60 ea</td></tr>
+          <tr><td>Bee package or nucleus</td><td>$150–200</td><td>Spring install</td></tr>
+          <tr><td>Protective gear</td><td>$100–200</td><td>One-time (shared)</td></tr>
+          <tr><td>Tools (smoker, hive tool, brush)</td><td>$50–100</td><td>Shared</td></tr>
+          <tr><td>Extractor (2–4 frame)</td><td>$300–800</td><td>Shared; upgrade later</td></tr>
+          <tr><td>Annual feed/meds/consumables</td><td>$50–100</td><td>Per hive; seasonal</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Yields, Sales & Education</h3>
       <ul>
-        <li>Start small and scalable; add greenhouse capacity as demand grows.</li>
-        <li>Partner with USDA extension, 4-H, schools; integrate classes/field trips.</li>
-        <li>Use farm produce in cooking classes and at the market.</li>
+        <li><b>Honey:</b> ~30–60 lb/hive/yr; retail $8–$12/lb → $240–$720 per hive (honey only).</li>
+        <li><b>Value-add:</b> wax candles/balms, propolis tinctures, gift packs.</li>
+        <li><b>Programs:</b> adult intro classes, kids workshops, <b>Pathfinder Beekeeping Honor</b>.</li>
       </ul>
+
+      <h3>Site, Safety & Compliance</h3>
+      <ul>
+        <li><b>Placement:</b> quiet, sunny, wind-sheltered; provide a clean water source.</li>
+        <li><b>Setbacks:</b> face entrances away from paths; fence/hedge to force upward flight path.</li>
+        <li><b>Local rules:</b> check county/municipal ordinances & CO apiary registration.</li>
+        <li><b>Risk mgmt:</b> signage; inform neighbors; keep EpiPen; train volunteers.</li>
+      </ul>
+
+      <table class="table">
+        <caption class="caption">Example Mini-Apiary Budget (Year 1)</caption>
+        <thead><tr><th>Scale</th><th>Startup</th><th>Annual Ops</th><th>Honey @ 45 lb/hive × $10/lb</th><th>Gross</th></tr></thead>
+        <tbody>
+          <tr><td>4 hives</td><td>$2,200–3,200</td><td>$200–400</td><td>≈ $1,800</td><td>$1,800 + wax/value-add</td></tr>
+          <tr><td>8 hives</td><td>$4,000–6,000</td><td>$400–800</td><td>≈ $3,600</td><td>$3,600 + wax/value-add</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Seasonal Checklist (Farm + Apiary)</h3>
+      <div class="accordion" id="seasonalAcc">
+        <div class="acc-item">
+          <button class="acc-btn">Spring (Mar–May)</button>
+          <div class="acc-panel">
+            <ul>
+              <li>Direct seed cool crops; transplant starts; prep beds; soil tests.</li>
+              <li>Install bee packages/nucs; feed light syrup; first mite checks.</li>
+              <li>Brooder for chicks (if rotating layers/meat birds); fish tank cycling (aquaponics).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn">Summer (Jun–Aug)</button>
+          <div class="acc-panel">
+            <ul>
+              <li>Succession planting; irrigation schedule; pest scouting.</li>
+              <li>Add supers; swarm checks; honey harvests as flows allow.</li>
+              <li>Poultry on pasture; fish grow-out & water quality monitoring.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn">Fall (Sep–Nov)</button>
+          <div class="acc-panel">
+            <ul>
+              <li>Major harvests; cover crops; composting; bed turnover.</li>
+              <li>Final honey pull; varroa treatment; reduce entrances; feed as needed.</li>
+              <li>Cull/rotate poultry; process; winterize aquaponic/hydro systems.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn">Winter (Dec–Feb)</button>
+          <div class="acc-panel">
+            <ul>
+              <li>Greenhouse/indoor production; seed planning; tool maintenance.</li>
+              <li>Bee winter checks (warm days); ensure food stores & ventilation.</li>
+              <li>Overwinter hens; repair pens; maintain fish systems at safe temps.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- Turf -->
     <section id="turf" class="card hidden">
       <h2>5) Turf Sports Field</h2>
       <h3>Purpose & Mission Alignment</h3>
@@ -225,6 +351,7 @@
       </ul>
     </section>
 
+    <!-- Pros -->
     <section id="pros" class="card hidden">
       <h2>6) On-site Wellness Professionals (PT & Massage)</h2>
       <h3>Purpose & Mission Alignment</h3>
@@ -240,15 +367,16 @@
       </ul>
     </section>
 
+    <!-- Finance -->
     <section id="finance" class="card hidden">
       <h2>Financial Self-Sustainability & Benevolence</h2>
       <div class="two-col">
         <p>Multiple revenue streams fund operations and benevolence, replacing recurring donations. Surplus supports a <b>Community Health Fund</b> to provide free gym memberships, produce boxes, healthcare visits, and youth scholarships.</p>
         <div class="kpi">
           <div><b>Initial capital</b><br>$550,000 (phased possible)</div>
-          <div><b>Total annual revenue</b><br>$281,000 (conservative)</div>
+          <div><b>Total annual revenue</b><br>$284,600 (now includes apiary)</div>
           <div><b>Total annual OPEX</b><br>$250,000</div>
-          <div><b>Net contribution</b><br><b>~$30,000/yr</b> (grows as programs scale)</div>
+          <div><b>Net contribution</b><br><b>~$34,600/yr</b> (grows as programs scale)</div>
         </div>
         <table class="table">
           <caption class="caption">Initial Capital Build-out</caption>
@@ -271,9 +399,10 @@
             <tr><td>Personal training (center share)</td><td>$24,000</td></tr>
             <tr><td>Premium add-ons (sauna/hydro)</td><td>$15,000</td></tr>
             <tr><td>Farm produce + vendor fees</td><td>$90,000</td></tr>
+            <tr><td>Apiary (honey only, 8 hives)</td><td>$3,600</td></tr>
             <tr><td>Turf field rentals/events</td><td>$50,000</td></tr>
             <tr><td>Massage therapy (center share)</td><td>$30,000</td></tr>
-            <tr><th>Total annual revenue</th><th>$281,000</th></tr>
+            <tr><th>Total annual revenue</th><th>$284,600</th></tr>
           </tbody>
         </table>
         <table class="table" style="margin-top:1rem">
@@ -290,6 +419,7 @@
       </div>
     </section>
 
+    <!-- Healthcare -->
     <section id="healthcare" class="card hidden">
       <h2>Community Healthcare Extension (Doctor/Dentist)</h2>
       <ul>
@@ -300,6 +430,7 @@
       </ul>
     </section>
 
+    <!-- Pathfinder -->
     <section id="pathfinder" class="card hidden">
       <h2>Pathfinder Camporee & Youth Engagement (20 Acres)</h2>
       <ul>
@@ -309,6 +440,7 @@
       </ul>
     </section>
 
+    <!-- Timeline -->
     <section id="timeline" class="card hidden">
       <h2>Phased Implementation & Timeline</h2>
       <table class="table">
@@ -321,6 +453,7 @@
       </table>
     </section>
 
+    <!-- Marketing -->
     <section id="marketing" class="card hidden">
       <h2>Marketing & Outreach Strategy</h2>
       <ul>
@@ -333,6 +466,7 @@
       </ul>
     </section>
 
+    <!-- Risk -->
     <section id="risk" class="card hidden">
       <h2>Risk Assessment & Mitigation</h2>
       <table class="table">
@@ -347,6 +481,7 @@
       </table>
     </section>
 
+    <!-- Charts -->
     <section id="charts" class="card hidden">
       <h2>Charts</h2>
       <div class="two-col">
@@ -365,6 +500,101 @@
       </div>
     </section>
 
+    <!-- Ag Calendar -->
+    <section id="agcal" class="card hidden">
+      <h2>Ag Year-Round Calendar (Crops • Bees • Chickens • Fish)</h2>
+      <div class="calendar">
+        <table>
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>
+              <th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Crop Rotations</b></td>
+              <td>Plan<br><span class="badge">Soil tests</span></td>
+              <td>Greenhouse starts</td>
+              <td>Prep beds</td>
+              <td>Cool crop plant</td>
+              <td>Warm crop plant</td>
+              <td>Succession</td>
+              <td>Succession</td>
+              <td>Succession</td>
+              <td>Turnover<br><span class="badge">Cover crop</span></td>
+              <td>Cover crop</td>
+              <td>Bed rest</td>
+              <td>Plan</td>
+            </tr>
+            <tr>
+              <td><b>Harvest Windows</b></td>
+              <td>Greens (GH)</td>
+              <td>Greens (GH)</td>
+              <td>Radish/greens</td>
+              <td>Leafy greens</td>
+              <td>Peas/early roots</td>
+              <td>Tomato/cuke</td>
+              <td>Peak veg</td>
+              <td>Peak veg</td>
+              <td>Roots/winter squash</td>
+              <td>Late roots</td>
+              <td>Storage crops</td>
+              <td>Microgreens</td>
+            </tr>
+            <tr>
+              <td><b>Bee Cycles</b></td>
+              <td>Cluster<br><span class="badge">Check stores</span></td>
+              <td>Warm-day checks</td>
+              <td>Install nucs/packages</td>
+              <td>Build-up<br><span class="badge">Add supers</span></td>
+              <td>Nectar flow</td>
+              <td>Harvest 1</td>
+              <td>Flow/monitor</td>
+              <td>Harvest 2</td>
+              <td>Varroa treat</td>
+              <td>Feed/insp.</td>
+              <td>Winterize</td>
+              <td>Cluster</td>
+            </tr>
+            <tr>
+              <td><b>Chicken Cycles</b></td>
+              <td>Overwinter</td>
+              <td>Brooder prep</td>
+              <td>Chicks arrive</td>
+              <td>Grow-out</td>
+              <td>Pasture</td>
+              <td>Egg peak</td>
+              <td>Egg peak</td>
+              <td>Rotate pasture</td>
+              <td>Cull/refresh</td>
+              <td>Coop deep-clean</td>
+              <td>Molting</td>
+              <td>Overwinter</td>
+            </tr>
+            <tr>
+              <td><b>Fish (Aquaponics)</b></td>
+              <td>Low temp</td>
+              <td>Cycle system</td>
+              <td>Fingerlings</td>
+              <td>Grow-out</td>
+              <td>Grow-out</td>
+              <td>Grow-out</td>
+              <td>Grow-out</td>
+              <td>Harvest 1</td>
+              <td>Grow-out</td>
+              <td>Harvest 2</td>
+              <td>System service</td>
+              <td>Low temp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:.5rem">Note: Colorado timing can shift with elevation and weather. Adjust planting/harvest by local frost dates.</p>
+    </section>
+
+    <!-- References -->
     <section id="refs" class="card hidden">
       <h2>Sources & Citations</h2>
       <ol>
@@ -389,6 +619,30 @@
 </main>
 
 <script>
+  // --- Mobile nav toggle ---
+  const menuBtn = document.getElementById('menuBtn');
+  const sideNav = document.getElementById('sideNav');
+  if (menuBtn) {
+    const mq = window.matchMedia('(max-width: 1023px)');
+    function resetNav() {
+      if (mq.matches) {
+        // mobile: initially closed
+        sideNav.classList.remove('open');
+        menuBtn.style.display = 'inline-block';
+      } else {
+        // desktop: always visible
+        sideNav.classList.add('open');
+        menuBtn.style.display = 'none';
+      }
+    }
+    resetNav();
+    mq.addEventListener('change', resetNav);
+    menuBtn.addEventListener('click', () => {
+      const isOpen = sideNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+
   // --- Tab logic ---
   const tabs = Array.from(document.querySelectorAll('.tablink'));
   const panels = Array.from(document.querySelectorAll('section.card'));
@@ -398,6 +652,13 @@
     tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
     // Lazy-init charts when their panel is first opened
     if(id === 'charts') initChartsOnce();
+    // Close nav on mobile after selecting a tab
+    if (window.innerWidth < 1024 && sideNav.classList.contains('open')) {
+      sideNav.classList.remove('open');
+      menuBtn?.setAttribute('aria-expanded','false');
+      // Scroll back to header so content is visible
+      window.scrollTo({ top: document.querySelector('header').offsetHeight, behavior: 'smooth' });
+    }
   }
 
   // Handle clicks
@@ -412,10 +673,18 @@
   const initial = location.hash ? location.hash.replace('#','') : 'exec';
   showPanel(initial);
 
-  // Also handle back/forward navigation
+  // Back/forward
   window.addEventListener('hashchange', () => {
     const target = location.hash.replace('#','') || 'exec';
     showPanel(target);
+  });
+
+  // --- Accordion (Seasonal Checklist) ---
+  document.querySelectorAll('.acc-item .acc-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.parentElement;
+      item.classList.toggle('open');
+    });
   });
 
   // --- Charts (init once) ---
@@ -424,14 +693,14 @@
     if(chartsInitialized) return;
     chartsInitialized = true;
 
-    const palette = ["#1f4e79","#2f75b5","#73a5d9","#0f3a5c","#55c1c3","#2e8b8b","#a8d5e2"];
+    const palette = ["#1f4e79","#2f75b5","#73a5d9","#0f3a5c","#55c1c3","#2e8b8b","#a8d5e2","#94a3b8"];
 
-    // Pie
+    // Pie (updated: includes Apiary)
     new Chart(document.getElementById("pieChart"), {
       type: "pie",
       data: {
-        labels: ["Gym + Training","Sauna/Hydro","Massage","Farm & Market","Turf Field","Cooking Classes","Healthcare"],
-        datasets: [{ data: [96000,15000,100000,90000,50000,15000,20000], backgroundColor: palette }]
+        labels: ["Gym + Training","Sauna/Hydro","Massage","Farm & Market","Apiary (Honey)","Turf Field","Cooking Classes","Healthcare"],
+        datasets: [{ data: [96000,15000,100000,90000,3600,50000,15000,20000], backgroundColor: palette }]
       },
       options: { plugins:{ legend:{ position:"right" }, tooltip:{ callbacks:{ label:ctx=> `${ctx.label}: $${(+ctx.raw).toLocaleString()}` } } } }
     });
